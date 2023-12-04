@@ -3,6 +3,7 @@ from collections import defaultdict
 from enum import Enum
 import calendar
 
+
 class Weekdays(Enum):
     MONDAY = 0
     TUESDAY = 1
@@ -12,7 +13,9 @@ class Weekdays(Enum):
     SATURDAY = 5
     SUNDAY = 6
 
+
 PERIOD = 7
+
 
 def get_birthdays_per_week(users):
     result = defaultdict(list)
@@ -33,7 +36,13 @@ def get_birthdays_per_week(users):
             today_weekday = today.weekday()
 
             if birthday_weekday in [Weekdays.SATURDAY.value, Weekdays.SUNDAY.value]:
-                if not today_weekday in [Weekdays.MONDAY.value, Weekdays.SUNDAY.value] or (today_weekday == Weekdays.SUNDAY.value and birthday_weekday == Weekdays.SUNDAY.value):
+                if not today_weekday in [
+                    Weekdays.MONDAY.value,
+                    Weekdays.SUNDAY.value,
+                ] or (
+                    today_weekday == Weekdays.SUNDAY.value
+                    and birthday_weekday == Weekdays.SUNDAY.value
+                ):
                     result[Weekdays.MONDAY.value].append(name)
             else:
                 result[birthday_weekday].append(name)
